@@ -1,0 +1,15 @@
+--- refi projects with tokens to check for balanceOf ---
+- toucan - https://app.toucan.earth/contracts
+- impactmarket - https://explorer.celo.org/mainnet/address/0x46c9757C5497c5B1f2eb73aE79b6B67D119B0B58
+- gooddollar - https://explorer.celo.org/mainnet/address/0x62B8B11039FcfE5aB0C56E502b1C372A3d2a9c7A
+- ethichub - https://celoscan.io//address/0x9995cc8f20db5896943afc8ee0ba463259c931ed
+
+
+
+
+
+--- todo ---
+- solidity nft contract
+- multiple images for each level of participation
+- minting dapp
+- integrate other prizes
