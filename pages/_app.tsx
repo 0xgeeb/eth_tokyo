@@ -1,20 +1,27 @@
 import { AppProps } from "next/app"
 import Layout from "./components/Layout"
 import Head from "next/head"
+import { Acme } from "next/font/google"
 import { configureChains, createClient, WagmiConfig } from "wagmi"
-import { celo } from "@wagmi/core/chains"
+import { celoAlfajores } from "@wagmi/core/chains"
 import { jsonRpcProvider } from "@wagmi/core/providers/jsonRpc"
-import { connectorsForWallets, RainbowKitProvider } from "@rainbow-me/rainbowkit"
+import { connectorsForWallets, RainbowKitProvider, darkTheme } from "@rainbow-me/rainbowkit"
 import { metaMaskWallet, injectedWallet, rainbowWallet, walletConnectWallet, ledgerWallet } from "@rainbow-me/rainbowkit/wallets"
 import "@rainbow-me/rainbowkit/styles.css"
 import "../styles/global.css"
 
+const acme = Acme({
+  weight: "400",
+  subsets: ['latin']
+})
+
 function MyApp({ Component, pageProps }: AppProps) {
 
-  const { chains, provider } = configureChains([celo], [
+
+  const { chains, provider } = configureChains([celoAlfajores], [
     jsonRpcProvider({
       rpc: () => ({
-        http: `tbd`
+        http: `https://alfajores-forno.celo-testnet.org`
       })
     })
   ])
@@ -46,7 +53,9 @@ function MyApp({ Component, pageProps }: AppProps) {
             <title>Celo PoP</title>
           </Head>
           <Layout>
-            <Component {...pageProps} />
+            <div className={acme.className}>
+              <Component {...pageProps} />
+            </div>
           </Layout> 
         </RainbowKitProvider>
       </WagmiConfig>

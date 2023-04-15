@@ -1,4 +1,5 @@
 foundry/lib
+foundry/.env
 .gitignore
 .next
 node_modules

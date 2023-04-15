@@ -14,32 +14,17 @@ contract ProofofParticipation is ERC721URIStorage {
   constructor() ERC721 ("Proof of Participation", "PoP") {
     _tokenIds.increment();
   }  
+
+  function checkParticipation() external returns (uint256) {
+    return _checkParticipation();
+  }
   
   function mint() external {
     uint256 _tokenId = _tokenIds.current();
     _safeMint(msg.sender, _tokenId);
+    uint256 _participationLevel = _checkParticipation();
+    _handleTokenURI(_participationLevel, _tokenId);
     _tokenIds.increment();
-  }
-
-  function checkParticipation() external returns (uint256) {
-    uint256 participationLevel;
-    // uint256 bctBalance = checkBCTBalance();
-    // if (bctBalance > 0) participationLevel++;
-    // uint256 pactBalance = checkPACTBalance();
-    // if (pactBalance > 0) participationLevel++;
-    // uint256 ethixBalance = checkETHIXBalance();
-    // if (ethixBalance > 0) participationLevel++;
-    // uint256 gooddollarBalance = checkGBalance();
-    // if (gooddollarBalance > 0) participationLevel++;
-    // uint256 mceloBalance = checkmCELOBalance();
-    // if (mceloBalance > 0) participationLevel++;
-    uint256 soulnameBalance = checkSoulNameBalance();
-    if (soulnameBalance > 0) participationLevel++;
-    // uint256 unilpBalance = checkUniLPBalance();
-    // if (unilpBalance > 0) participationLevel++;
-    // uint256 stakedceloBalance = checkStakedCeloBalance();
-    // if (stakedceloBalance > 0) participationLevel++;
-    return soulnameBalance;
   }
 
   function checkBCTBalance() internal returns (uint256 _bctBalance) {
@@ -73,38 +58,23 @@ contract ProofofParticipation is ERC721URIStorage {
   }
 
   function checkETHIXBalance() internal returns (uint256 _ethixBalance) {
-    address ethix = 0x9995cc8F20Db5896943Afc8eE0ba463259c931ed;
-    address ethixWhale = 0x60869958A341DA3F69A8C4933844271e22C5Be76;
+    address ethix = 0x4620D7a5F58f77eeE69A38AfdAa8f2FfB10b42b6;
+    address ethixWhale = 0xF416B1A0432a5735d70b353873677Ace6A81F1Ae;
     (bool success, bytes memory data) = ethix.call(
       abi.encodeWithSignature(
-        "balanceOf(address)", 
+        "balanceOf(address)",
         ethixWhale
       )
     );
     require(success, "ethix check failed");
     assembly {
-      _ethixBalance := mload(add(data,32))
-    }
-  }
-
-  function checkGBalance() internal returns (uint256 _gBalance) {
-    address g = 0x62B8B11039FcfE5aB0C56E502b1C372A3d2a9c7A;
-    address gWhale = 0xDEb250aDD368b74ebCCd59862D62fa4Fb57E09D4;
-    (bool success, bytes memory data) = g.call(
-      abi.encodeWithSignature(
-        "balanceOf(address)",
-        gWhale
-      )
-    );
-    require(success, "g$ check failed");
-    assembly {
-      _gBalance := mload(add(data, 32))
+      _ethixBalance := mload(add(data, 32))
     }
   }
 
   function checkmCELOBalance() internal returns (uint256 _mceloBalance) {
-    address mcelo = 0x7D00cd74FF385c955EA3d79e47BF06bD7386387D;
-    address mceloWhale = 0xa904e2cDE2f31e4A3f626f0d9054726dBcA4695E;
+    address mcelo = 0x86f61EB83e10e914fc6F321F5dD3c2dD4860a003;
+    address mceloWhale = 0xA373E08D56f6742D9daC741f234B5fe769D6c01A;
     (bool success, bytes memory data) = mcelo.call(
       abi.encodeWithSignature(
         "balanceOf(address)",
@@ -118,8 +88,8 @@ contract ProofofParticipation is ERC721URIStorage {
   }
 
   function checkSoulNameBalance() internal returns (uint256 _soulnameBalance) {
-    address soulname = 0x376f5039Df4e9E9c864185d8FaBad4f04A7E394A;
-    address soulnameWhale = 0xcBf203F2ee13702Ec41404856f75357e0872484e;
+    address soulname = 0xf163686d50C800C49ED58836d3a4D1fBA057CeE6;
+    address soulnameWhale = 0x510c3392dA882534D8757070F4Ac142E2b08Bd0e;
     (bool success, bytes memory data) = soulname.call(
       abi.encodeWithSignature(
         "balanceOf(address)",
@@ -134,7 +104,7 @@ contract ProofofParticipation is ERC721URIStorage {
 
   function checkUniLPBalance() internal returns (uint256 _unilpBalance) {
     address unilp = 0x3d79EdAaBC0EaB6F08ED885C05Fc0B014290D95A;
-    address unilpWhale = 0xCf8A93340EA3b17Bd16779D0f848583eb599a561;
+    address unilpWhale = 0xCeA7fb5B582c07129B8Dc2feC4D4e5435b0968fF;
     (bool success, bytes memory data) = unilp.call(
       abi.encodeWithSignature(
         "balanceOf(address)",
@@ -147,18 +117,39 @@ contract ProofofParticipation is ERC721URIStorage {
     }
   }
 
-  function checkStakedCeloBalance() internal returns (uint256 _stakedceloBalance) {
-    address stakedcelo = 0x8A1639098644A229d08F441ea45A63AE050Ee018;
-    address stakedceloWhale = 0x46C5CFC2079309F4e7d9476a01730a60e2F1a164;
-    (bool success, bytes memory data) = stakedcelo.call(
-      abi.encodeWithSignature(
-        "balanceOf(address)",
-        stakedceloWhale
-      )
-    );
-    require(success, "stakedcelo check failed");
-    assembly {
-      _stakedceloBalance := mload(add(data, 32))
+  function _checkParticipation() internal returns (uint256) {
+    uint256 participationLevel;
+    uint256 bctBalance = checkBCTBalance();
+    if (bctBalance > 0) participationLevel++;
+    uint256 pactBalance = checkPACTBalance();
+    if (pactBalance > 0) participationLevel++;
+    uint256 ethixBalance = checkETHIXBalance();
+    if (ethixBalance > 0) participationLevel++;
+    uint256 mceloBalance = checkmCELOBalance();
+    if (mceloBalance > 0) participationLevel++;
+    uint256 soulnameBalance = checkSoulNameBalance();
+    if (soulnameBalance > 0) participationLevel++;
+    uint256 unilpBalance = checkUniLPBalance();
+    if (unilpBalance > 0) participationLevel++;
+    return participationLevel;
+  }
+
+  function _handleTokenURI(uint256 _level, uint256 _tokenId) internal {
+    if(_level == 0) {
+      string memory noneJson = "ipfs://QmZp9iVvwupFR3Dtc28sjXZURNsrLpcHJukrYKqBcPdGXe";
+      _setTokenURI(_tokenId, noneJson);
+    }
+    if(_level == 1 || _level == 2) {
+      string memory bronzeJson = "ipfs://QmcmEjs92ePGkgCJDHi5ND246my6MHtKSjvRrxPw8mLj5U";
+      _setTokenURI(_tokenId, bronzeJson);
+    }
+    if(_level == 3 || _level == 4) {
+      string memory silverJson = "ipfs://QmVGvwNh5PELuqPrKCArXpA7fZYyLJptNbHMnmmHh7SrdQ";
+      _setTokenURI(_tokenId, silverJson);
+    }
+    if(_level == 5 || _level == 6) {
+      string memory goldJson = "ipfs://QmcQ5o2UNrBt4fdXuZaiJ7u74EDQz7WQs8chX9Zw6MVeje";
+      _setTokenURI(_tokenId, goldJson);
     }
   }
 

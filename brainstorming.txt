@@ -29,7 +29,6 @@ celo explorer
 --- todo ---
 - solidity nft contract
   - checks
-  - use check function in overwritten transfer function to recheck balances
 - minting dapp
   - celo themed colors
   - loading symbol while minting
@@ -41,4 +40,6 @@ celo explorer
   - explain tech stack for front end
   - if continue working, possibly use indexing past data instead of current data
   - gas optimizations
+  - use check function in overwritten transfer function to recheck balances
+  - gooddollar and staked celo
 - submit
