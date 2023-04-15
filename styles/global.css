@@ -1,0 +1,9 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+#hello {
+  color: green;
+  margin-top: 20%;
+  margin-left: 45%;
+}

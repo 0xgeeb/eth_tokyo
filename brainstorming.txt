@@ -14,8 +14,16 @@
 
 
 
+image links
+none - https://ipfs.io/ipfs/QmSLZrbzT1Ahjh9Kwxrn7rTpWtYg6Jx3mJUjXqyzexRVzt
+bronze - https://ipfs.io/ipfs/QmVGY7wVoxvbMnJoN32Ss1SXxS3M3khXhVQ9qdxLbhKMb5
+silver - https://ipfs.io/ipfs/QmZ7W9DCyk9K226PtudN8nnFgbbh7a3dRLkSzGimUkbE1W
+gold - https://ipfs.io/ipfs/QmfVh6S4xYRCVq7CPHRaMsV6NGUGR1xYiNSc3LRhTEWFKx
 
-
+nft marketplaces
+tofu
+ariswap
+celo explorer
 
 
 --- todo ---
