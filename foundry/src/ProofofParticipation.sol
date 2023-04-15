@@ -22,11 +22,24 @@ contract ProofofParticipation is ERC721URIStorage {
   }
 
   function checkParticipation() external returns (uint256) {
-    uint256 bctBalance = checkBCTBalance();
-    uint256 pactBalance = checkPACTBalance();
-    uint256 ethixBalance = checkETHIXBalance();
-    uint256 gooddollarBalance = checkGBalance();
-    return gooddollarBalance;
+    uint256 participationLevel;
+    // uint256 bctBalance = checkBCTBalance();
+    // if (bctBalance > 0) participationLevel++;
+    // uint256 pactBalance = checkPACTBalance();
+    // if (pactBalance > 0) participationLevel++;
+    // uint256 ethixBalance = checkETHIXBalance();
+    // if (ethixBalance > 0) participationLevel++;
+    // uint256 gooddollarBalance = checkGBalance();
+    // if (gooddollarBalance > 0) participationLevel++;
+    // uint256 mceloBalance = checkmCELOBalance();
+    // if (mceloBalance > 0) participationLevel++;
+    uint256 soulnameBalance = checkSoulNameBalance();
+    if (soulnameBalance > 0) participationLevel++;
+    // uint256 unilpBalance = checkUniLPBalance();
+    // if (unilpBalance > 0) participationLevel++;
+    // uint256 stakedceloBalance = checkStakedCeloBalance();
+    // if (stakedceloBalance > 0) participationLevel++;
+    return soulnameBalance;
   }
 
   function checkBCTBalance() internal returns (uint256 _bctBalance) {
@@ -86,6 +99,66 @@ contract ProofofParticipation is ERC721URIStorage {
     require(success, "g$ check failed");
     assembly {
       _gBalance := mload(add(data, 32))
+    }
+  }
+
+  function checkmCELOBalance() internal returns (uint256 _mceloBalance) {
+    address mcelo = 0x7D00cd74FF385c955EA3d79e47BF06bD7386387D;
+    address mceloWhale = 0xa904e2cDE2f31e4A3f626f0d9054726dBcA4695E;
+    (bool success, bytes memory data) = mcelo.call(
+      abi.encodeWithSignature(
+        "balanceOf(address)",
+        mceloWhale
+      )
+    );
+    require(success, "mcelo check failed");
+    assembly {
+      _mceloBalance := mload(add(data, 32))
+    }
+  }
+
+  function checkSoulNameBalance() internal returns (uint256 _soulnameBalance) {
+    address soulname = 0x376f5039Df4e9E9c864185d8FaBad4f04A7E394A;
+    address soulnameWhale = 0xcBf203F2ee13702Ec41404856f75357e0872484e;
+    (bool success, bytes memory data) = soulname.call(
+      abi.encodeWithSignature(
+        "balanceOf(address)",
+        soulnameWhale
+      )
+    );
+    require(success, "soulname check failed");
+    assembly {
+      _soulnameBalance := mload(add(data, 32))
+    }
+  }
+
+  function checkUniLPBalance() internal returns (uint256 _unilpBalance) {
+    address unilp = 0x3d79EdAaBC0EaB6F08ED885C05Fc0B014290D95A;
+    address unilpWhale = 0xCf8A93340EA3b17Bd16779D0f848583eb599a561;
+    (bool success, bytes memory data) = unilp.call(
+      abi.encodeWithSignature(
+        "balanceOf(address)",
+        unilpWhale
+      )
+    );
+    require(success, "unilp check failed");
+    assembly {
+      _unilpBalance := mload(add(data, 32))
+    }
+  }
+
+  function checkStakedCeloBalance() internal returns (uint256 _stakedceloBalance) {
+    address stakedcelo = 0x8A1639098644A229d08F441ea45A63AE050Ee018;
+    address stakedceloWhale = 0x46C5CFC2079309F4e7d9476a01730a60e2F1a164;
+    (bool success, bytes memory data) = stakedcelo.call(
+      abi.encodeWithSignature(
+        "balanceOf(address)",
+        stakedceloWhale
+      )
+    );
+    require(success, "stakedcelo check failed");
+    assembly {
+      _stakedceloBalance := mload(add(data, 32))
     }
   }
 
