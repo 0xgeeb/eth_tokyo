@@ -11,5 +11,6 @@
 --- todo ---
 - solidity nft contract
 - multiple images for each level of participation
+- use check function in overwritten transfer function to recheck balances
 - minting dapp
 - integrate other prizes
