@@ -10,6 +10,8 @@
 - multiple images for each level of participation
   - 4 tiers; none, bronze, silver, gold (celo themed)
   - upload to ipfs
+- solidity nft contract
+  - checks
 
 
 
@@ -27,8 +29,6 @@ celo explorer
 
 
 --- todo ---
-- solidity nft contract
-  - checks
 - minting dapp
   - celo themed colors
   - loading symbol while minting

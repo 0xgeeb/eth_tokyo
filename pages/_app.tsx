@@ -5,7 +5,7 @@ import { Acme } from "next/font/google"
 import { configureChains, createClient, WagmiConfig } from "wagmi"
 import { celoAlfajores } from "@wagmi/core/chains"
 import { jsonRpcProvider } from "@wagmi/core/providers/jsonRpc"
-import { connectorsForWallets, RainbowKitProvider, darkTheme } from "@rainbow-me/rainbowkit"
+import { connectorsForWallets, RainbowKitProvider } from "@rainbow-me/rainbowkit"
 import { metaMaskWallet, injectedWallet, rainbowWallet, walletConnectWallet, ledgerWallet } from "@rainbow-me/rainbowkit/wallets"
 import "@rainbow-me/rainbowkit/styles.css"
 import "../styles/global.css"
@@ -21,7 +21,7 @@ function MyApp({ Component, pageProps }: AppProps) {
   const { chains, provider } = configureChains([celoAlfajores], [
     jsonRpcProvider({
       rpc: () => ({
-        http: `https://alfajores-forno.celo-testnet.org`
+        http: `https://celo-alfajores.infura.io/v3/622287366ca844bda84b6c9b8c4af49e`
       })
     })
   ])
