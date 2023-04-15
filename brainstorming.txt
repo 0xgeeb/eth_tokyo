@@ -1,8 +1,22 @@
---- refi projects with tokens to check for balanceOf ---
-- toucan - https://app.toucan.earth/contracts
+--- completed ---
+- toucan - https://app.toucan.earth/contracts 
 - impactmarket - https://explorer.celo.org/mainnet/address/0x46c9757C5497c5B1f2eb73aE79b6B67D119B0B58
-- gooddollar - https://explorer.celo.org/mainnet/address/0x62B8B11039FcfE5aB0C56E502b1C372A3d2a9c7A
-- ethichub - https://celoscan.io//address/0x9995cc8f20db5896943afc8ee0ba463259c931ed
+- ethichub - https://celoscan.io//address/0x9995cc8f20db5896943afc8ee0ba463259c931ed ONLY MAINNET
+- gooddollar - https://explorer.celo.org/mainnet/address/0x62B8B11039FcfE5aB0C56E502b1C372A3d2a9c7A ONLY MAINNET
+
+
+
+
+
+
+
+--- refi projects with tokens to check for balanceOf ---
+- moola
+- massa (celo name service)
+- uniswap LP
+- sprials
+  - stcelo (staked celo)
+
 
 
 
@@ -10,7 +24,13 @@
 
 --- todo ---
 - solidity nft contract
+  - use check function in overwritten transfer function to recheck balances
 - multiple images for each level of participation
-- use check function in overwritten transfer function to recheck balances
+  - 3 tiers; bronze, silver, gold
+  - no tier but still some image
+  - celo themed images
+  - upload to ipfs
 - minting dapp
-- integrate other prizes
+  - celo themed colors
+  - loading symbol while minting
+  - show congratz message and nft they receive
