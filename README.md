@@ -1,4 +1,4 @@
-# eth_tokyo
+# Celo Proof of Participation
 
 Dynamic NFT that showcases how much a user has participated on Celo
 
